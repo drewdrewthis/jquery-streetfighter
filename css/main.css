@@ -12,6 +12,13 @@ body {
   z-index: 1;
 }
 
+#sf-logo {
+	position: fixed;
+	top: 0;
+	right: 5px;
+	z-index: 999;
+}
+
 .ryu {
 	float: left;
     width: 659px;
@@ -57,4 +64,14 @@ body {
   z-index: 10;
   left: 600px;
   top: 171px;
+}
+
+.instructions {
+	font-family: 'Oswald', sans-serif;
+    width: 400px;
+    position: relative;
+    left: -250px;
+    padding-top: 60px;
+    font-size: 2rem;
+    float: left;
 }

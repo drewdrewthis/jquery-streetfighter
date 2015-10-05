@@ -1,7 +1,5 @@
 $( document ).ready(function() {
-    //$('div.ryu-throwing').hide();
-    //$('div.ryu-still').hide();
-    //$('div.hadouken').hide();
+    doIntro();
 
     $('.ryu').mouseenter(function() {
     	console.log('mouse entered .ryu div');
@@ -12,11 +10,13 @@ $( document ).ready(function() {
     	console.log('mouse left');
     	$('.ryu-ready').hide();
 		$('.ryu-still').show();
+		$('.instructions').show();
   	})
   	.mousedown(function() {
   		console.log('mousedown');
   		playHadouken();
   		$('.ryu-ready').hide();
+  		$('.instructions').hide();
   		$('.ryu-throwing').show();
   		$('.hadouken').finish().show().animate(
   			{'left':'2020px'},
@@ -25,6 +25,7 @@ $( document ).ready(function() {
   				$(this).hide();
   				$(this).css('left','600px');
   			}
+
   		);
     	// animate hadouken to the right of the screen
     })
@@ -32,6 +33,7 @@ $( document ).ready(function() {
     	console.log('mouseup')
     	$('.ryu-throwing').hide();
     	$('.ryu-ready').show();
+		$('.instructions').show();
     });
 
     function playHadouken () {
@@ -41,15 +43,24 @@ $( document ).ready(function() {
 	};
 
 	function playCool () {
-	  $('#hadouken-sound')[0].volume = 0.5;
-	  $('#hadouken-sound')[0].load();
-	  $('#hadouken-sound')[0].play();
+		$('#theme-song')[0].pause();
+		// $('#cool')[0].load()
+		$('#cool-song')[0].volume = 0.5;
+		$('#cool-song')[0].play();
 	};
 
-	$('html').keydown(function(event) {
+	function doIntro() {
+	  $('#theme-song')[0].volume = 0.3;
+	  $('#theme-song')[0].load();
+	  $('#cool-song')[0].load();
+	  $('#theme-song')[0].play();
+	};
+
+	$(document).keydown(function(event) {
 		console.log("Key Pressed");
-		if(event.which == 88) {
+		if(event.keyCode == 88) {
 			console.log("X Key Pressed");
+			playCool();
 			$('.ryu-ready').hide();
 			$('.ryu-still').hide();
 			$('.ryu-cool').show();
@@ -62,7 +73,8 @@ $( document ).ready(function() {
 		console.log("Key Up");
 		$('.ryu-cool').hide();
 		$('.ryu-ready').show();
-
+		$('#cool-song')[0].pause();
+      	$('#cool-song')[0].load();
 	});
 
 });
