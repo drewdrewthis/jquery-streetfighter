@@ -38,6 +38,31 @@ $( document ).ready(function() {
 	  $('#hadouken-sound')[0].volume = 0.5;
 	  $('#hadouken-sound')[0].load();
 	  $('#hadouken-sound')[0].play();
-	}
+	};
+
+	function playCool () {
+	  $('#hadouken-sound')[0].volume = 0.5;
+	  $('#hadouken-sound')[0].load();
+	  $('#hadouken-sound')[0].play();
+	};
+
+	$('html').keydown(function(event) {
+		console.log("Key Pressed");
+		if(event.which == 88) {
+			console.log("X Key Pressed");
+			$('.ryu-ready').hide();
+			$('.ryu-still').hide();
+			$('.ryu-cool').show();
+		}
+		else {
+			console.log(event.which + " Key Code Pressed");
+		};
+	})
+	.keyup(function(event) {
+		console.log("Key Up");
+		$('.ryu-cool').hide();
+		$('.ryu-ready').show();
+
+	});
 
 });
